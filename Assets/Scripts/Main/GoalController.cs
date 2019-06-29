@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GoalController : MonoBehaviour {
+    private const float OutSideOfLeft = -9.5f;
+    private const float FrameLeft = -3.9f;
     private AudioSource audio_source;
     private bool is_sounded;
 
     [SerializeField]
     private float speed = 3.0f;
-    private static int count;
+    private bool is_last = false;
 
     void Start() {
         audio_source = gameObject.GetComponent<AudioSource>();
         is_sounded = false;
-        count = 0;
     }
 
     void Update() {
@@ -21,20 +22,21 @@ public class GoalController : MonoBehaviour {
         this.transform.position -= transform.right * speed * Time.deltaTime;
 
         // まだ音がなってないかつフレームと一致でピッ
-        if(this.transform.position.x <= -3.9 && !is_sounded){
+        if(this.transform.position.x <= FrameLeft && !is_sounded){
             audio_source.Play();
             is_sounded = true;
         }
 
         // 遠くに行ったら消える
-        if(this.transform.position.x <= -10f){
+        if(this.transform.position.x <= OutSideOfLeft){
             Destroy(this.gameObject);
-            if(GoalGenerator.get_is_finished() == true){
-                count++;
-                if(count == 10){
-                    SceneController.go_next_scene_from("Main");
-                }
+            if(this.is_last){
+                SceneSwitcher.go_next_scene_from("Main");
             }
         }
+    }
+
+    public void is_final_goal(){
+        this.is_last = true;
     }
 }

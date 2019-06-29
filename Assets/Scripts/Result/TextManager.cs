@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TextManager : MonoBehaviour {
-    private Text score_text;
+    [SerializeField]
+    private Text text;
 
     void Start(){
-        score_text = this.GetComponent<Text>();
-        this.score_text.text = "score: " + ScoreManager.get_score().ToString();
+        this.text.text = "score: " + ScoreManager.get_score().ToString();
     }
 }
