@@ -8,7 +8,7 @@ public class ReflectorController : MonoBehaviour {
     private int wall_id = 0;
     readonly private Vector3[] ReflectDirections = {
         new Vector3(-40f, 0f, 0f), 
-        new Vector3(0f, -20f, 0f)
+        new Vector3(0f, -30f, 0f)
     };
 	  private Vector3 reflect_direction;
       private AudioSource audio_source;
