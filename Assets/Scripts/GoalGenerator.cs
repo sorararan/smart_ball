@@ -5,7 +5,7 @@ using UnityEngine;
 public class GoalGenerator : MonoBehaviour {
     private GameObject goal_prefab;
     readonly private  Vector3 InitGoalPos = new Vector3(5f, 0.2f, 0f);
-    private const float TimeOut = 3f;
+    private const float TimeOut = 1.5f;
     private float time_elapsed = 0f;
 
     void Start() {
