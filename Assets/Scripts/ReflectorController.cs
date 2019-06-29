@@ -11,14 +11,17 @@ public class ReflectorController : MonoBehaviour {
         new Vector3(0f, -20f, 0f)
     };
 	  private Vector3 reflect_direction;
+      private AudioSource audio_source;
 
 	  void Start() {
 		    reflect_direction = ReflectDirections[wall_id];
+            audio_source = gameObject.GetComponent<AudioSource>();
 	  }
 
     void OnCollisionEnter(Collision collision) {
 		    if(collision.gameObject.tag == "Ball") {
 			      collision.gameObject.GetComponent<Rigidbody>().velocity = reflect_direction;
+                  audio_source.Play();
 		    }
 	  }
 }
