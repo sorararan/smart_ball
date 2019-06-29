@@ -11,6 +11,7 @@ public class GoalChecker : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider) {
         if(collider.gameObject.tag == "Ball") {
+            ScoreManager.up_score();
             audio_source.Play();
 		}
     }
