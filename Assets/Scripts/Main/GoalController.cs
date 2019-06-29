@@ -8,10 +8,12 @@ public class GoalController : MonoBehaviour {
 
     [SerializeField]
     private float speed = 3.0f;
+    private static int count;
 
     void Start() {
         audio_source = gameObject.GetComponent<AudioSource>();
         is_sounded = false;
+        count = 0;
     }
 
     void Update() {
@@ -27,6 +29,12 @@ public class GoalController : MonoBehaviour {
         // 遠くに行ったら消える
         if(this.transform.position.x <= -10f){
             Destroy(this.gameObject);
+            if(GoalGenerator.get_is_finished() == true){
+                count++;
+                if(count == 10){
+                    SceneController.go_next_scene_from("Main");
+                }
+            }
         }
     }
 }

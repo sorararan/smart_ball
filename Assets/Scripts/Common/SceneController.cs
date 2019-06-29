@@ -7,11 +7,11 @@ public class SceneController : MonoBehaviour {
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Return)) {
-            go_next_scene(SceneManager.GetActiveScene().name);
+            go_next_scene_from(SceneManager.GetActiveScene().name);
 		}
     }
 
-    public static void go_next_scene(string now_scene_name){
+    public static void go_next_scene_from(string now_scene_name){
         if (now_scene_name == "Title"){
             ScoreManager.init_score();
             SceneManager.LoadScene ("Scenes/Main");
